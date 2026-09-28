@@ -1,1 +1,1 @@
-Sitemap: ganuthebabu.github.io/fastblog/sitemap.xml
+Sitemap: https://ganuthebabu.github.io/fastblog/sitemap.xml
