@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
-  },
-  {
     "objectID": "posts/first-blog/02_prod.html",
     "href": "posts/first-blog/02_prod.html",
     "title": "Implementing Fastai Lesson 2",
@@ -39,13 +32,6 @@
     "href": "index.html",
     "title": "FastBlog",
     "section": "",
-    "text": "Implementing Fastai Lesson 2\n\n\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nSep 28, 2026\n\n\nSri Ganesh S\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nSep 28, 2026\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nSep 25, 2026\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code."
+    "text": "Implementing Fastai Lesson 2\n\n\n\ncode\n\nanalysis\n\n\n\nThis is my first blog\n\n\n\n\n\nSep 28, 2026\n\n\nSri Ganesh S\n\n\n\n\n\nNo matching items"
   }
 ]
