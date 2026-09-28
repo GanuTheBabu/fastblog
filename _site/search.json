@@ -11,7 +11,7 @@
     "href": "posts/first-blog/02_prod.html",
     "title": "My First Blog",
     "section": "",
-    "text": "Hello everyone, welcome to my first blog. I am Sri Ganesh S. I am writing this blog to learn and improve my technical skills and to provide my own thoughts on the things I learn, so that the next person who follows my path can gain a new perspective on various things.\nEvery single one of my blogs is going to be my own journal in my path to complete the fast.ai course Part 1 and Part 2(https://course.fast.ai/). I would like to give a Huge thanks to Jeremy Howard and the fast.ai team for creating a fantastic course."
+    "text": "---\ntitle: \"Post With Code\"\nauthor: \"Harlow Malloc\"\ndate: \"2026-09-28\"\ncategories: [news, code, analysis]\nimage: \"image.jpg\"\n---\nHello everyone, welcome to my first blog. I am Sri Ganesh S. I am writing this blog to learn and improve my technical skills and to provide my own thoughts on the things I learn, so that the next person who follows my path can gain a new perspective on various things.\nEvery single one of my blogs is going to be my own journal in my path to complete the fast.ai course Part 1 and Part 2(https://course.fast.ai/). I would like to give a Huge thanks to Jeremy Howard and the fast.ai team for creating a fantastic course."
   },
   {
     "objectID": "posts/first-blog/02_prod.html#about-me",
