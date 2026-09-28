@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "FastBlog",
+    "section": "",
+    "text": "My First Blog\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nSep 28, 2026\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nSep 25, 2026\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code."
+  },
+  {
+    "objectID": "posts/first-blog/02_prod.html",
+    "href": "posts/first-blog/02_prod.html",
+    "title": "My First Blog",
+    "section": "",
+    "text": "Hello everyone, welcome to my first blog. I am Sri Ganesh S. I am writing this blog to learn and improve my technical skills and to provide my own thoughts on the things I learn, so that the next person who follows my path can gain a new perspective on various things.\nEvery single one of my blogs is going to be my own journal in my path to complete the fast.ai course Part 1 and Part 2(https://course.fast.ai/). I would like to give a Huge thanks to Jeremy Howard and the fast.ai team for creating a fantastic course."
+  },
+  {
+    "objectID": "posts/first-blog/02_prod.html#about-me",
+    "href": "posts/first-blog/02_prod.html#about-me",
+    "title": "My First Blog",
+    "section": "About me",
+    "text": "About me\nLet me introduce myself again, I am Sri Ganesh S, pursuing my Master of IT @ UNSW Sydney. I am currently in my first term. and still have 5 more tri-mesters to complete my degree. I have done my Bachelors in Computer Science and Engineering in MSEC, India."
+  },
+  {
+    "objectID": "posts/first-blog/02_prod.html#pre-requisites",
+    "href": "posts/first-blog/02_prod.html#pre-requisites",
+    "title": "My First Blog",
+    "section": "Pre-requisites",
+    "text": "Pre-requisites\nI would like to point out that, anyone can follow my blog comfortably in\n\nBasic python syntax\nComfortable in basic high school calculus (Just need knowledge on what intergration and deferntiation does)\na local environment to run all libraries in fastai course. (Eg: nbdev, kagglehub, fastai etc)\n\nI would also highly recommend you to follow the course along with me to gain the most amount of knowledge from my blogs. So without further ado legs begin"
+  }
+]
