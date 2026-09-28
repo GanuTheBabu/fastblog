@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>FastBlog</title>
+<link>https://your-website-url.example.com/</link>
+<atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
+<description>A blog built with Quarto</description>
+<generator>quarto-1.10.18</generator>
+<lastBuildDate>Sun, 27 Sep 2026 14:00:00 GMT</lastBuildDate>
+<item>
+  <title>Post With Code</title>
+  <dc:creator>Harlow Malloc</dc:creator>
+  <link>https://your-website-url.example.com/posts/post-with-code/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>This is a post with executable code.</p>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <category>code</category>
+  <category>analysis</category>
+  <guid>https://your-website-url.example.com/posts/post-with-code/</guid>
+  <pubDate>Sun, 27 Sep 2026 14:00:00 GMT</pubDate>
+  <media:content url="https://your-website-url.example.com/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Welcome To My Blog</title>
+  <dc:creator>Tristan O&#39;Malley</dc:creator>
+  <link>https://your-website-url.example.com/posts/welcome/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>This is the first post in a Quarto blog. Welcome!</p>
+<p><img src="https://your-website-url.example.com/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
+<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <guid>https://your-website-url.example.com/posts/welcome/</guid>
+  <pubDate>Thu, 24 Sep 2026 14:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>My First Blog</title>
+  <link>https://your-website-url.example.com/posts/first-blog/02_prod.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Hello everyone, welcome to my first blog. I am Sri Ganesh S. I am writing this blog to learn and improve my technical skills and to provide my own thoughts on the things I learn, so that the next person who follows my path can gain a new perspective on various things.</p>
+<p>Every single one of my blogs is going to be my own journal in my path to complete the fast.ai course Part 1 and Part 2(https://course.fast.ai/). I would like to give a Huge thanks to Jeremy Howard and the fast.ai team for creating a fantastic course.</p>
+<section id="about-me" class="level2">
+<h2 class="anchored" data-anchor-id="about-me">About me</h2>
+<p>Let me introduce myself again, I am Sri Ganesh S, pursuing my Master of IT @ UNSW Sydney. I am currently in my first term. and still have 5 more tri-mesters to complete my degree. I have done my Bachelors in Computer Science and Engineering in MSEC, India.</p>
+</section>
+<section id="pre-requisites" class="level2">
+<h2 class="anchored" data-anchor-id="pre-requisites">Pre-requisites</h2>
+<p>I would like to point out that, anyone can follow my blog comfortably in</p>
+<ul>
+<li>Basic python syntax</li>
+<li>Comfortable in basic high school calculus (Just need knowledge on what intergration and deferntiation does)</li>
+<li>a local environment to run all libraries in fastai course. (Eg: nbdev, kagglehub, fastai etc)</li>
+</ul>
+<p>I would also highly recommend you to follow the course along with me to gain the most amount of knowledge from my blogs. So without further ado legs begin</p>
+</section>
+<section id="making-a-model-putting-it-in-production" class="level1">
+<h1>Making a model putting it in production</h1>
+<p>This notebook was written after Part 1 Lesson 2 pf the fast ai course In this notebook I create a model to differentiate between a car and a truck in a given image.</p>
+<div id="4a860a72-75a7-4294-b6a2-43577b5ead82" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> fastai <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span></span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> fastai.vision.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">all</span> <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span></span>
+<span id="cb1-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> pathlib <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> Path</span>
+<span id="cb1-4"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> kagglehub</span>
+<span id="cb1-5"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> fastai.vision.widgets <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span></span></code></pre></div></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[2], line 4</span>
+<span class="ansi-green-fg ansi-bold">      2</span> <span style="font-weight:bold;color:rgb(0,135,0)">from</span> <span style="font-weight:bold;color:rgb(0,0,255)">fastai</span><span style="font-weight:bold;color:rgb(0,0,255)">.</span><span style="font-weight:bold;color:rgb(0,0,255)">vision</span><span style="font-weight:bold;color:rgb(0,0,255)">.</span><span style="font-weight:bold;color:rgb(0,0,255)">all</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> <span style="color:rgb(98,98,98)">*</span>
+<span class="ansi-green-fg ansi-bold">      3</span> <span style="font-weight:bold;color:rgb(0,135,0)">from</span> <span style="font-weight:bold;color:rgb(0,0,255)">pathlib</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> Path
+<span class="ansi-green-fg">----&gt; 4</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> <span style="font-weight:bold;color:rgb(0,0,255)">kagglehub</span>
+<span class="ansi-green-fg ansi-bold">      5</span> <span style="font-weight:bold;color:rgb(0,135,0)">from</span> <span style="font-weight:bold;color:rgb(0,0,255)">fastai</span><span style="font-weight:bold;color:rgb(0,0,255)">.</span><span style="font-weight:bold;color:rgb(0,0,255)">vision</span><span style="font-weight:bold;color:rgb(0,0,255)">.</span><span style="font-weight:bold;color:rgb(0,0,255)">widgets</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> <span style="color:rgb(98,98,98)">*</span>
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'kagglehub'</pre>
+</div>
+</div>
+</div>
+<div id="f67b9059-9d90-4b30-9da4-4b1d1764c1b6" class="cell" data-scrolled="true" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">kagglehub.login()</span></code></pre></div></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[1], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> kagglehub<span style="color:rgb(98,98,98)">.</span>login()
+
+<span class="ansi-red-fg">NameError</span>: name 'kagglehub' is not defined</pre>
+</div>
+</div>
+</div>
+<div id="ac48ebe9-f2ce-45b0-bd08-406cb4457cd1" class="cell" data-execution_count="54">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">path <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> kagglehub.dataset_download(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"enesumcu/car-and-truck"</span>,output_dir<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Data/car_or_truck"</span>)</span>
+<span id="cb3-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Path to dataset files:"</span>, path)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Path to dataset files: Data/car_or_truck</code></pre>
+</div>
+</div>
+<div id="dac12514-fb45-45eb-8c39-f08c6c26bea1" class="cell" data-execution_count="71">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">failed <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> verify_images(get_image_files(path))</span>
+<span id="cb5-2">failed.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">map</span>(Path.unlink)</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="71">
+<pre><code>[None]</code></pre>
+</div>
+</div>
+<div id="dc1394ac-e30a-4721-b8c4-87c1971c847f" class="cell" data-execution_count="72">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1">failed <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> verify_images(get_image_files(path))</span>
+<span id="cb7-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(failed)</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="72">
+<pre><code>0</code></pre>
+</div>
+</div>
+<div id="56584c81-1d82-4397-abfc-26530006a3bb" class="cell" data-execution_count="78">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1">dls <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> DataBlock(</span>
+<span id="cb9-2">    blocks<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(ImageBlock, CategoryBlock), </span>
+<span id="cb9-3">    get_items<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>get_image_files, </span>
+<span id="cb9-4">    splitter<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>RandomSplitter(valid_pct<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>, seed<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">42</span>),</span>
+<span id="cb9-5">    get_y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>parent_label,</span>
+<span id="cb9-6">    item_tfms<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Resize(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">128</span>)).dataloaders(data_path)</span>
+<span id="cb9-7"></span>
+<span id="cb9-8">dls.train.show_batch()</span></code></pre></div></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/first-blog/02_prod_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="850f20e2-8fc3-43fa-a169-6368ea342ef2" class="cell" data-execution_count="79">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">learn <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> vision_learner(dls, resnet18, metrics<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>error_rate)</span></code></pre></div></div>
+</div>
+<div id="629179e5-26fd-4c97-921c-3ca1bc902597" class="cell" data-execution_count="80">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">learn.fine_tune(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-display">
+<div>
+<table class="fastprogress caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">error_rate</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.956962</td>
+<td>0.573918</td>
+<td>0.191083</td>
+<td>00:01</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<table class="fastprogress caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">error_rate</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.526498</td>
+<td>0.415896</td>
+<td>0.165605</td>
+<td>00:01</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.387070</td>
+<td>0.495136</td>
+<td>0.140127</td>
+<td>00:01</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.290261</td>
+<td>0.500073</td>
+<td>0.152866</td>
+<td>00:02</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0.252708</td>
+<td>0.461796</td>
+<td>0.146497</td>
+<td>00:02</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="d189756f-b9df-4dca-b240-991893d6629f" class="cell" data-execution_count="85">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1">interp <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ClassificationInterpretation.from_learner(learn)</span>
+<span id="cb12-2">interp.plot_confusion_matrix()</span></code></pre></div></div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/first-blog/02_prod_files/figure-html/cell-10-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="13177718-6c5c-4cf3-98cc-f67aca0ccd36" class="cell" data-execution_count="86">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1">interp.plot_top_losses(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, nrows<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/first-blog/02_prod_files/figure-html/cell-11-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="6fad0dab-5154-46b5-9ccc-4ba819f5ff96" class="cell" data-execution_count="91">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1">cleaner <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ImageClassifierCleaner(learn)</span>
+<span id="cb14-2">cleaner</span></code></pre></div></div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"65250b29a04d412eab200db941c864c4","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+</div>
+<div id="b3e7241f-c1ea-4eb9-88dc-e54df1770b41" class="cell" data-execution_count="94">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> idx <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> cleaner.delete(): cleaner.fns[idx].unlink</span></code></pre></div></div>
+</div>
+<div id="c38877f4-0581-4605-be46-15a93c4a5bc3" class="cell" data-execution_count="102">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> idx,cat <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> cleaner.change(): shutil.move(cleaner.fns[idx],data_path<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>cat)</span></code></pre></div></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">Error</span>                                     Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[102], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> idx,cat <span style="font-weight:bold;color:rgb(175,0,255)">in</span> cleaner<span style="color:rgb(98,98,98)">.</span>change(): shutil<span style="color:rgb(98,98,98)">.</span>move(cleaner<span style="color:rgb(98,98,98)">.</span>fns[idx],data_path<span style="color:rgb(98,98,98)">/</span>cat)
+
+File <span class="ansi-green-fg">/opt/conda/lib/python3.11/shutil.py:851</span>, in <span class="ansi-cyan-fg">move</span><span class="ansi-blue-fg">(src, dst, copy_function)</span>
+<span class="ansi-green-fg ansi-bold">    848</span>     real_dst <span style="color:rgb(98,98,98)">=</span> os<span style="color:rgb(98,98,98)">.</span>path<span style="color:rgb(98,98,98)">.</span>join(dst, _basename(src))
+<span class="ansi-green-fg ansi-bold">    850</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> os<span style="color:rgb(98,98,98)">.</span>path<span style="color:rgb(98,98,98)">.</span>exists(real_dst):
+<span class="ansi-green-fg">--&gt; 851</span>         <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> Error(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Destination path </span><span style="color:rgb(175,0,0)">'</span><span style="font-weight:bold;color:rgb(175,95,135)">%s</span><span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)"> already exists</span><span style="color:rgb(175,0,0)">"</span> <span style="color:rgb(98,98,98)">%</span> real_dst)
+<span class="ansi-green-fg ansi-bold">    852</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg ansi-bold">    853</span>     os<span style="color:rgb(98,98,98)">.</span>rename(src, real_dst)
+
+<span class="ansi-red-fg">Error</span>: Destination path 'Data/car_or_truck/datasets/Datasets/car/433793461.jpg' already exists</pre>
+</div>
+</div>
+</div>
+<div id="d3188755-d5dd-4556-a0fa-ac5a7e700b6b" class="cell" data-execution_count="101">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">cleaner.fns[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="101">
+<pre><code>Path('Data/car_or_truck/datasets/Datasets/truck/433466152.jpg')</code></pre>
+</div>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://your-website-url.example.com/posts/first-blog/02_prod.html</guid>
+  <pubDate>Mon, 28 Sep 2026 00:58:32 GMT</pubDate>
+</item>
+</channel>
+</rss>
